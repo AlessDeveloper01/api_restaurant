@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "lib": ["ES2021"], // Cambiado para mayor compatibilidad
+        "target": "ES2021", // Más estable para Node.js actual
+        "moduleResolution": "Node",
+        "module": "CommonJS", // Más estándar para Express y Node.js
+        "strict": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "skipLibCheck": true // Ignora problemas de tipos en bibliotecas externas
+    },
+    "include": ["src/**/*.ts", "src/types/custom.d.ts"],
+    "exclude": ["node_modules"]
+}
