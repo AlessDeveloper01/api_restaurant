@@ -1,6 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import { createServer } from 'http';
-import { Server as SocketServer, Socket } from 'socket.io';
+import { Server as SocketServer } from 'socket.io';
 import { AuthRouter, UserRouter, ProductRouter, InventoryRouter, CategoryRouter } from './routes';
 import colors from 'colors';
 import cors from 'cors';
@@ -17,7 +17,7 @@ export class Server {
         this.server = createServer(this.app);
         this.io = new SocketServer(this.server, {
             cors: {
-                origin: '*',
+                origin: ['http://localhost:3000', 'https://frontend-restaurant-wine.vercel.app/'],
                 methods: ['GET', 'POST', 'PUT', 'DELETE'],
             },
             connectTimeout: 5000,
@@ -28,14 +28,14 @@ export class Server {
     
     public start(port: number) {
         this.app.use(cors({
-            origin: '*',
+            origin: ['http://localhost:3000', 'https://frontend-restaurant-wine.vercel.app/'],
             methods: ['GET', 'POST', 'PUT', 'DELETE'],
         }));
 
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
 
-        this.app.use((req: Request, res: Response, next: NextFunction) => {
+        this.app.use((req: Request, _res: Response, next: NextFunction) => {
             (req as any).io = this.io;
             console.log(colors.cyan("Middleware executed: req.io configured"));
             next();
