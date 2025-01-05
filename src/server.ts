@@ -17,7 +17,7 @@ export class Server {
         this.server = createServer(this.app);
         this.io = new SocketServer(this.server, {
             cors: {
-                origin: ['http://localhost:3000', 'https://frontend-restaurant-wine.vercel.app/'],
+                origin: ['http://localhost:3000', 'https://frontend-restaurant-wine.vercel.app'],
                 methods: ['GET', 'POST', 'PUT', 'DELETE'],
             },
             connectTimeout: 5000,
@@ -28,7 +28,7 @@ export class Server {
     
     public start(port: number) {
         this.app.use(cors({
-            origin: ['http://localhost:3000', 'https://frontend-restaurant-wine.vercel.app/'],
+            origin: ['http://localhost:3000', 'https://frontend-restaurant-wine.vercel.app'],
             methods: ['GET', 'POST', 'PUT', 'DELETE'],
         }));
 
